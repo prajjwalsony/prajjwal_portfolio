@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prajjwal's Portfolio</title>
+    <style>
+      body {
+        font-family: Georgia, serif;
+        background-color: #ffffff;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+
+      .section {
+        padding: 50px 20px;
+        text-align: center;
+      }
+
+      .about-me {
+        background-color: #ccffee;
+        padding: 50px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .about-me-header {
+        background-color: #000000; /* Set the background to black */
+        color: #ffffff;
+        width: 100%;
+        padding: 20px 0;
+        animation: fadeIn 2s ease-in-out;
+        opacity: 0;
+        animation-fill-mode: forwards;
+      }
+
+      .about-me-header h1 {
+        font-size: 3em;
+        font-family: "Brush Script MT", cursive;
+        margin: 0;
+      }
+
+      .profile-image-container {
+        position: relative;
+        margin: 20px 0;
+        width: 270px;
+        height: 270px;
+      }
+
+      .profile-image-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 10px solid transparent;
+        border-image: linear-gradient(to right, black, white);
+        border-image-slice: 1;
+        animation: rotateBorder 5s linear infinite;
+        z-index: -1;
+      }
+
+      @keyframes rotateBorder {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .profile-image {
+        border-radius: 50%;
+        width: 250px;
+        height: 250px;
+      }
+
+      .about-text {
+        margin: 20px auto;
+        max-width: 100%;
+        font-size: 1.2em;
+        background-color: #000000;
+        padding: 20px;
+        color: #ffffff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        animation: fadeIn 2s ease-in-out;
+        opacity: 0;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .bullish-statement {
+        margin: 20px auto;
+        font-size: 1.5em;
+        font-style: italic;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #000;
+      }
+
+      .bullish-statement img {
+        width: 24px;
+        height: 24px;
+        margin-left: 10px;
+      }
+
+      .contact-links {
+        margin-top: 20px;
+        font-family: "Courier New", monospace;
+        font-size: 1.2em;
+        background-color: #000000;
+        color: #ffffff;
+        width: 100%;
+        padding: 10px 0;
+        animation: fadeIn 2s ease-in-out;
+        opacity: 0;
+        animation-fill-mode: forwards;
+      }
+
+      .link-row {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+
+      .contact-links a,
+      .contact-links p {
+        display: flex;
+        align-items: center;
+        margin: 0 10px;
+        color: #ffffff;
+        text-decoration: none;
+      }
+
+      .contact-links .icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+      }
+
+      .education,
+      .projects,
+      .skills,
+      .achievements {
+        background-color: #ccffe6;
+        padding: 50px 0;
+      }
+
+      .education-card,
+      .project-card,
+      .skill-card,
+      .achievement-card {
+        background-color: #ffffff;
+        border: 2px solid #ccffe6;
+        border-radius: 10px;
+        margin: 10px;
+        padding: 20px;
+        display: inline-block;
+        width: 220px;
+        box-sizing: border-box;
+        vertical-align: top;
+        transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+        cursor: pointer;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .education-card:hover,
+      .project-card:hover,
+      .skill-card:hover,
+      .achievement-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        background-color: #99ffeb; /* Color change on hover */
+      }
+
+      .projects .project-card {
+        width: 250px; /* Set a specific width for project cards */
+        height: 220px; /* Set a specific height for project cards */
+      }
+
+      .skills {
+        background-color: #ccffe6;
+        padding: 50px 0;
+      }
+
+      .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .skill-card h3,
+      .skill-card p {
+        margin: 5px 0;
+      }
+
+      .focused {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        width: 80%;
+        background-color: #ccffe6;
+      }
+
+      .blurred {
+        filter: blur(5px);
+        pointer-events: none;
+      }
+
+      .animated .icon {
+        animation: pop-out 0.5s ease-out forwards;
+      }
+
+      @keyframes pop-out {
+        0% {
+          transform: scale(0);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="section about-me">
+      <div class="about-me-header">
+        <h1>Prajjwal</h1>
+      </div>
+      <div class="profile-image-container">
+        <img
+          src="images/profile_photo.png"
+          alt="Prajjwal's Image"
+          class="profile-image"
+        />
+      </div>
+      <p class="bullish-statement">
+        I am very bullish on myself ..
+        <img src="images/bull-logo.png" alt="Bull Logo" />
+      </p>
+      <div class="contact-links">
+        <div class="link-row">
+          <a href="https://github.com/prajjwalsony" target="_blank">
+            <img src="images/github-logo.png" alt="GitHub" class="icon" />
+            GitHub
+          </a>
+          <a href="mailto:sonyprajjwal@gmail.com" target="_blank">
+            <img src="images/gmail-logo.png" alt="Gmail" class="icon" />
+            aryannnyadavvv@gmail.com
+          </a>
+        </div>
+        <div class="link-row">
+          <a href="www.linkedin.com/in/prajjwal-sony-13462627a" target="_blank">
+            <img src="images/linkedin-logo.png" alt="LinkedIn" class="icon" />
+            LinkedIn
+          </a>
+          <!-- <a href="https://leetcode.com/u/Aryan1143/" target="_blank">
+            <img src="images/leetcode-logo.png" alt="LeetCode" class="icon" />
+            LeetCode
+          </a> -->
+        </div>
+      </div>
+      <p class="about-text">
+        Prajjwal Sony is an experienced ML and backend developer based in Chennai, India, with a strong foundation in server-side web development and project management. He excels in delivering high-performance and efficient software solutions. Prajjwal has contributed to projects like a traffic prediction system, where he implemented hourly predictions and optimized various ML algorithms for better accuracy. He also developed a backend-loaded chess game using Flask, JavaScript, and HTML, incorporating game logic and mechanics on the server side with Python, and integrating a custom database using Pandas. Currently pursuing a Bachelor of Technology in Electronics and Computer Engineering at Vellore Institute of Technology, Prajjwal is proficient in programming languages such as C, C++, and Python, and is familiar with frameworks like NodeJs and Flask. His skill set includes technologies like Pandas, sklearn, TensorFlow, and NumPy, and he has effectively managed several teams and events, demonstrating strong leadership and project management abilities.
+    </div>
+
+    <div class="section education">
+      <h2>Education</h2>
+      <div class="education-card">
+        <h3>Schooling</h3>
+        <p>12th Class (CBSE Board)</p>
+        <p>Secured 95%</p>
+      </div>
+      <div class="education-card">
+        <h3>Vellore Institute of Technology, Chennai</h3>
+        <p>Bachelor of Technology in Electronics and Computer Engineering (B.Tech)</p>
+        <p>CGPA: 8.7</p>
+        <p>Year of Completion: 2026</p>
+      </div>
+    </div>
+
+    <div class="section projects">
+      <h2>Projects and Experiences</h2>
+      <div
+        class="project-card"
+        onclick="openLink('https://github.com/prajjwalsony')"
+      >
+        <h3>Food Ordering App</h3>
+        <p>
+          An app for VIT Chennai students to order food via WhatsApp. Built with
+          Node.js, Express, and MongoDB.
+        </p>
+      </div>
+      <div
+        class="project-card"
+        onclick="openLink('https://github.com/prajjwalsony')"
+      >
+        <h3>Chess Game App</h3>
+        <p>
+          A web-based chess game using Flask, Python, and HTML/CSS with the
+          Pandas library for data management.
+        </p>
+      </div>
+      <div
+        class="project-card"
+        onclick="openLink('https://github.com/prajjwalsony')"
+      >
+        <h3>ML Project: Image Detection</h3>
+        <p>
+          An image detection system using YOLO v8, capable of identifying
+          various objects in real-time.
+        </p>
+      </div>
+      <div
+        class="project-card"
+        onclick="openLink('https://github.com/prajjwalsony')"
+      >
+        <h3>Website for Aryan Packaging</h3>
+        <p>
+          A front-end project for a business named Aryan Packaging, focusing on
+          showcasing products and services.
+        </p>
+      </div>
+      <div
+        class="project-card"
+        onclick="openLink('https://github.com/prajjwalsony')"
+      >
+        <h3>YouTube Time Monitor Extension</h3>
+        <p>
+          A Chrome extension to monitor and categorize time spent on YouTube,
+          helping users manage their viewing habits.
+        </p>
+      </div>
+      <div
+        class="project-card"
+        onclick="openLink('hhttps://github.com/prajjwalsony')"
+      >
+        <h3>Quotes Generator Extension</h3>
+        <p>
+          A Chrome extension that generates and displays inspirational quotes,
+          built with JavaScript and HTML/CSS.
+        </p>
+      </div>
+    </div>
+
+    <div class="section skills">
+      <h2>Skills</h2>
+      <div class="skills-container">
+        <div class="skill-card">
+          <h3>Python</h3>
+        </div>
+        <div class="skill-card">
+          <h3>JavaScript</h3>
+        </div>
+        <div class="skill-card">
+          <h3>React</h3>
+        </div>
+        <div class="skill-card">
+          <h3>Node.js</h3>
+        </div>
+        <div class="skill-card">
+          <h3>HTML & CSS</h3>
+        </div>
+        <div class="skill-card">
+          <h3>SQL</h3>
+        </div>
+        <div class="skill-card">
+          <h3>Git & GitHub</h3>
+        </div>
+        <div class="skill-card">
+          <h3>RESTful APIs</h3>
+        </div>
+        <div class="skill-card">
+          <h3>Machine Learning</h3>
+        </div>
+        <div class="skill-card">
+          <h3>Docker</h3>
+        </div>
+        <div class="skill-card">
+          <h3>Technical Analysis</h3>
+        </div>
+        <div class="skill-card">
+          <h3>Fundamental Analysis</h3>
+        </div>
+        <div class="skill-card">
+          <h3>Algorithmic Trading</h3>
+        </div>
+        <div class="skill-card">
+          <h3>Risk Management</h3>
+        </div>
+        <div class="skill-card">
+          <h3>Portfolio Management</h3>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function openLink(url) {
+        window.open(url, "_blank");
+      }
+    </script>
+  </body>
+</html>
